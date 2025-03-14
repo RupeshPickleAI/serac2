@@ -1,0 +1,362 @@
+/* Base styles */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    min-height: 100vh;
+}
+
+/* Section header styling - matched with camera grid style */
+.comfort-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.comfort-header h1 {
+    color: #2c3e50;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Subheading style */
+.subheading {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin: 2rem 0 1rem;
+    padding-left: 1rem;
+    border-left: 4px solid #28a745; /* Green */
+}
+
+/* Sensor and Bottle Sections */
+.sensor-section,
+.bottles-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Button group styling */
+.button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* Bottle button styling - Green */
+.bottle-button {
+    padding: 1.2rem;
+    font-size: 1.1rem;
+    color: white;
+    background: #28a745; /* Green */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.bottle-button:hover {
+    background: #218838; /* Darker Green */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.4);
+}
+
+/* Run button styling - Green */
+.run-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #28a745; /* Green */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+    width: 220px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.run-button:hover {
+    background: #218838; /* Darker Green */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+.run-button:active {
+    transform: translateY(1px);
+}
+
+/* Comfort section styling */
+.comfort-header {
+    background: linear-gradient(135deg, #2c3e50, #28a745); /* Green */
+    color: white;
+    padding: 12px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.comfort-header h1 {
+    color: white;
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: 600;
+}
+
+.comfort-header p {
+    color: #ecf0f1;
+    font-size: 1em;
+    margin-top: 5px;
+}
+
+/* Buttons grid layout */
+.comfort-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Folder button styling - Green */
+.folder-button {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #28a745; /* Green */
+    color: white;
+    transition: all 0.3s ease;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.folder-button:hover {
+    background-color: #218838; /* Darker Green */
+}
+
+.folder-button.active,
+.folder-button:focus {
+    background-color: #1e7e34 !important; /* Even Darker Green */
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .content-section {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .comfort-buttons-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .button-group {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .bottle-button {
+        padding: 15px;
+        font-size: 1em;
+    }
+
+    .run-button {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .comfort-header h1 {
+        font-size: 1.1em;
+    }
+
+    .bottle-button {
+        padding: 12px;
+    }
+}
+
+
+/* OCR Section styling */
+.ocr-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Slider container */
+.slider-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Slider styling */
+.ocr-slider {
+    width: 100%;
+    max-width: 500px;
+    height: 8px;
+    -webkit-appearance: none;
+    background: #e9ecef;
+    border-radius: 4px;
+    outline: none;
+}
+
+.ocr-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #28a745;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ocr-slider::-webkit-slider-thumb:hover {
+    background: #218838;
+    transform: scale(1.1);
+}
+
+.ocr-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #28a745;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ocr-slider::-moz-range-thumb:hover {
+    background: #218838;
+    transform: scale(1.1);
+}
+
+/* Slider value display */
+.slider-value {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+#ocrValue {
+    font-weight: 600;
+}
+
+#ocrNumber {
+    color: #6c757d;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .slider-container {
+        padding: 0.5rem;
+    }
+    
+    .ocr-slider {
+        max-width: 100%;
+    }
+    
+    .slider-value {
+        font-size: 1rem;
+    }
+}
+
+/* Add these styles to your existing CSS */
+.slider-container {
+    position: relative;
+    padding: 30px 0;
+    margin: 20px 0;
+}
+
+.ocr-slider {
+    width: 100%;
+    margin: 20px 0;
+    -webkit-appearance: none;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    position: relative;
+    z-index: 2;
+}
+
+.ocr-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #2ecc71;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.slider-markers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: none;
+}
+
+.slider-mark {
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.mark-line {
+    width: 2px;
+    height: 10px;
+    background: #ccc;
+    margin: 0 auto;
+}
+
+.mark-number {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 5px;
+    color: #666;
+}
+
+.slider-mark.active .mark-line {
+    background: #2ecc71;
+}
+
+.slider-mark.active .mark-number {
+    color: #2ecc71;
+    font-weight: bold;
+}
