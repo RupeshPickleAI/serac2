@@ -1,0 +1,10 @@
+{
+    "defects": {
+        "defect1": false,
+        "defect2": false,
+        "defect3": false,
+        "defect4": false,
+        "defect5": false,
+        "defect6": false
+    }
+}

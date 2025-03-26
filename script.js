@@ -3,17 +3,12 @@ let statusInterval = null;
 let currentPage = 1;
 let imagesPerPage = 10;
 let allImages = [];
-// Define folder paths
-const imageFolders = {
-    "1": "C:/Users/Rupesh/OneDrive/Pictures/Screenshots",
-    "2": "C:/Users/Rupesh/OneDrive/Pictures/Photos",
-    "3": "C:/Users/Rupesh/Downloads"
-};
+
 
 const machineScripts = {
     1: { 
-        pythonPath: 'C:/Users/Rupesh/AppData/Local/Programs/Python/Python313/python.exe', 
-        scriptPath: 'C:/Users/Rupesh/OneDrive/Documents/main.py' 
+        pythonPath: 'C:/Users/Rupesh/AppData/Local/Programs/Python/Python313/python.exe ', 
+        scriptPath: 'c:/Users/Rupesh/Projects/serac1/Electron_Project/main.py' 
     },
     2: { 
         pythonPath: 'C:/Users/Rupesh/AppData/Local/Programs/Python/Python313/python.exe', 
@@ -83,41 +78,34 @@ const machineScripts = {
 
 
 
-const cameraConfigPaths = {
-    "camera1": "C:/Users/Rupesh/OneDrive/Desktop/config1.json",
-    "camera2": "C:/Users/Rupesh/OneDrive/Desktop/config2.json",
-    "camera3": "D:/Electron_Project zip/config3.json",
-    "camera4": "D:/Electron_Project zip/config4.json",
-    "camera5": "C:/Users/Rupesh/OneDrive/Desktop/config5.json",
-    "camera6": "C:/Users/Rupesh/OneDrive/Desktop/config6.json",
-    "camera7": "C:/Users/Rupesh/OneDrive/Desktop/config7.json",
-    "camera8": "C:/Users/Rupesh/OneDrive/Desktop/config8.json",
-    "camera9": "C:/Users/Rupesh/OneDrive/Desktop/config9.json"
-};
+// const cameraConfigPaths = {
+//     "camera1": "C:Users/Rupesh/demoprojects/Electron_Project/camera.json",
+//     "camera2": "C:/Users/Rupesh/OneDrive/Desktop/config2.json",
+//     "camera3": "D:/Electron_Project zip/config3.json",
+//     "camera4": "D:/Electron_Project zip/config4.json",
+//     "camera5": "C:/Users/Rupesh/OneDrive/Desktop/config5.json",
+//     "camera6": "C:/Users/Rupesh/OneDrive/Desktop/config6.json",
+//     "camera7": "C:/Users/Rupesh/OneDrive/Desktop/config7.json",
+//     "camera8": "C:/Users/Rupesh/OneDrive/Desktop/config8.json",
+//     "camera9": "C:/Users/Rupesh/OneDrive/Desktop/config9.json"
+// };
+
 
 const machineStatusPath = "C:/Users/Rupesh/OneDrive/Desktop/machine_status.json";
 
-const dummyImages = [
-    '/api/placeholder/640/480',
-    '/api/placeholder/640/480',
-    '/api/placeholder/640/480',
-    '/api/placeholder/640/480',
-    '/api/placeholder/640/480',
-    '/api/placeholder/640/480',
-    '/api/placeholder/640/480',
-    '/api/placeholder/640/480',
-    '/api/placeholder/640/480'
-];
+// const dummyImages = [
+//     '/api/placeholder/640/480',
+//     '/api/placeholder/640/480',
+//     '/api/placeholder/640/480',
+//     '/api/placeholder/640/480',
+//     '/api/placeholder/640/480',
+//     '/api/placeholder/640/480',
+//     '/api/placeholder/640/480',
+//     '/api/placeholder/640/480',
+//     '/api/placeholder/640/480'
+// ];
 
-function reloadGallery() {
-    if (currentFolder) {
-        currentPage = 1; // Reset page to the first one
-        allImages = []; // Clear previously loaded images
-        document.getElementById("imageGrid").innerHTML = ""; // Clear existing images
-        loadImagesFromFolder(currentFolder, activeButtonId);
-        window.scrollTo(0, 0); // Scroll to top
-    }
-}
+
 
 function loadContent(section, event) {
     const mainContent = document.getElementById('mainContent');
@@ -128,31 +116,19 @@ function loadContent(section, event) {
         mainContent.innerHTML = `
             <div id="images-section" class="content-section active">
                 <div class="section-header">
-                    <h1 class="section-title">Product Image Gallery</h1>
-                    <p class="section-subtitle">Browse through product images from different categories.</p>
+                    <h1 class="section-title">Defect Turn ON or OFF</h1>
                 </div>
                 
-                <div class="image-buttons">
-                    <button class="folder-button" id="screenshotsBtn" onclick="loadImagesFromFolder(imageFolders['1'], 'screenshotsBtn')">
-                        <i class="fa-solid fa-robot"></i> 1
-                    </button>
-                    <button class="folder-button" id="photosBtn" onclick="loadImagesFromFolder(imageFolders['2'], 'photosBtn')">
-                        <i class="fa-solid fa-robot"></i> 2
-                    </button>
-                    <button class="folder-button" id="downloadsBtn" onclick="loadImagesFromFolder(imageFolders['3'], 'downloadsBtn')">
-                        <i class="fa-solid fa-robot"></i> 3
-                    </button>
+                <div class="toggle-container" id="toggleContainer">
+                    <!-- Toggles will be dynamically loaded here -->
                 </div>
-                
+    
                 <div class="image-grid-container" id="imageGridContainer">
                     <div class="image-grid" id="imageGrid"></div>
                 </div>
-
-                <button class="refresh-button" onclick="reloadGallery()">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
             </div>`;
-        loadRandomImages();
+        
+        loadDefectToggles();
     }
     else if (section === 'code') {
         mainContent.innerHTML = `
@@ -180,21 +156,21 @@ function loadContent(section, event) {
                     <p>Real-time surveillance monitoring system for all production units.</p>
                 </div>
                 <div class="camera-grid">
-                    ${Object.keys(cameraConfigPaths).map(cameraKey => `
+                    ${[1,2,3,4,5].map(num => `
                         <div class="camera-container">
                             <div class="camera-title">
-                                <i class="fas fa-video"></i> ${cameraKey.replace('camera', 'Camera ')}
+                                <i class="fas fa-video"></i> Camera ${num}
                             </div>
                             <div class="camera-feed">
-                                <img src="${dummyImages[0]}" alt="${cameraKey}" id="${cameraKey}">
+                                <img src="/api/placeholder/640/480" alt="camera${num}" id="camera${num}">
                             </div>
                         </div>
                     `).join('')}
                 </div>
             </div>`;
-    
         startCameraUpdates();
     }
+    
     else if (section === "machine_status") {
         initializeMachineStatus();
         startStatusUpdates();
@@ -202,75 +178,78 @@ function loadContent(section, event) {
 }
 
 
-// Function to load images when a folder button is clicked
-async function loadImagesFromFolder(folderPath, buttonId) {
-    if (!folderPath) {
-        console.error("Error: folderPath is undefined");
-        return;
-    }
 
+const toggleJsonPath = "C:/Users/Rupesh/Projects/serac1/Electron_Project/toggle.json"; // Define the correct path
+
+// Object to store updated toggle states before submitting
+let updatedToggles = {};
+
+
+async function loadDefectToggles() {
     try {
-        console.log("Loading images from:", folderPath);
-        currentFolder = folderPath; // Store selected folder
-        activeButtonId = buttonId;  // Track active button
+        const response = await fetch("file:///" + toggleJsonPath);
+        const data = await response.json();
 
-        const response = await window.electron.getRandomImages(folderPath);
+        const toggleContainer = document.getElementById("toggleContainer");
+        if (!toggleContainer) return;
 
-        if (!response || response.length === 0) {
-            console.error("No images received from Electron API");
-            document.getElementById('imageGrid').innerHTML = '<p>No images found.</p>';
+        let toggleHTML = Object.keys(data.defects)
+            .map((key, index) => `
+                <div class="toggle-wrapper">
+                    <label class="toggle-label">Defect ${index + 1}</label>
+                    <label class="switch">
+                        <input type="checkbox" id="${key}" ${data.defects[key] ? "checked" : ""} onchange="updateToggleState('${key}')">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            `)
+            .join('');
+
+        toggleHTML += `<button class="submit-button" onclick="submitToggles()">Submit</button>`;
+
+        toggleContainer.innerHTML = toggleHTML;
+    } catch (error) {
+        console.error("Error loading defect toggles:", error);
+    }
+}
+
+
+// Function to store changes in `updatedToggles` object
+function updateToggleState(key) {
+    const checkbox = document.getElementById(key);
+    updatedToggles[key] = checkbox.checked;
+}
+
+// Function to submit and update `toggle.json`
+async function submitToggles() {
+    try {
+        if (Object.keys(updatedToggles).length === 0) {
+            alert("No changes made.");
             return;
         }
 
-        allImages = response;
+        // Fetch the existing toggle.json data
+        const response = await fetch("file:///" + toggleJsonPath);
+        const data = await response.json();
 
-        // Reset button colors and highlight selected button
-        document.querySelectorAll('.folder-button').forEach(button => {
-            button.style.backgroundColor = '#3498db';
+        // Update defects based on modified toggles
+        Object.keys(updatedToggles).forEach(key => {
+            data.defects[key] = updatedToggles[key];
         });
-        document.getElementById(buttonId).style.backgroundColor = '#2ecc71';
 
-        displayImages();
-        window.scrollTo(0, 0); // Scroll to top
+        // Send updated data to Electron main process to write it to file
+        window.electron.updateToggleJson(data);
+
+        alert("Defect toggles updated successfully!");
+
+        updatedToggles = {}; // Reset after submission
+        loadDefectToggles(); // Reload toggles to reflect changes
     } catch (error) {
-        console.error("Error loading images:", error);
-        document.getElementById('imageGrid').innerHTML = '<p>Error loading images.</p>';
+        console.error("Error updating defect toggle:", error);
     }
 }
 
-// Function to display images
-function displayImages() {
-    const imageGrid = document.getElementById('imageGrid');
-    if (!imageGrid) return;
 
-    if (allImages.length === 0) {
-        imageGrid.innerHTML = '<p>No images found.</p>';
-        return;
-    }
-
-    imageGrid.innerHTML = allImages.map((fileName, index) => {
-        const imagePath = `file:///${fileName.replace(/\\/g, '/')}`;
-        return `
-            <div class="image-container">
-                <img src="${imagePath}" class="gallery-image" alt="Image ${index + 1}">
-                <div class="image-info">
-                    <div class="image-title">${fileName.split('/').pop()}</div>
-                </div>
-            </div>`;
-    }).join('');
-}
-
-function changePage(direction) {
-    const totalPages = Math.ceil(allImages.length / imagesPerPage);
-
-    if (direction === 'prev' && currentPage > 1) {
-        currentPage--;
-    } else if (direction === 'next' && currentPage < totalPages) {
-        currentPage++;
-    }
-
-    displayCurrentPage();
-}
 
 
 function initializeMachineStatus() {
@@ -315,67 +294,72 @@ function updateMachineStatus() {
         .catch(error => console.error('Error loading machine status:', error));
 }
 
-// Function to start updating cameras at intervals
-function startCameraUpdates() {
-    updateCameras(); // Initial update
-    cameraInterval = setInterval(updateCameras, 200); // Update every 2 seconds
-}
+
 
 function startStatusUpdates() {
     updateMachineStatus();
     statusInterval = setInterval(updateMachineStatus, 500);
 }
 
+
+
+const cameraJsonPath = "C:/Users/Rupesh/demoprojects/Electron_Project/camera.json"
+
+// Function to update the camera images
 function updateCameras() {
-    Object.entries(cameraConfigPaths).forEach(([cameraKey, filePath]) => {
-        fetch(`file:///${filePath}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.cameraImage) {
-                    const imgElement = document.getElementById(cameraKey);
-                    if (imgElement) {
-                        imgElement.src = data.cameraImage.startsWith('data:image/')
-                            ? data.cameraImage
-                            : `data:image/jpeg;base64,${data.cameraImage}`;
-                    }
+    // Fetch camera config (camera.json) to get the base64 image data
+    fetch(`file:///${cameraJsonPath}`)
+        .then(response => response.json())
+        .then(data => {
+            const cameras = data.cameraImage; // Assuming cameraImage contains the camera data
+            if (!cameras) {
+                console.error("Invalid camera image data format.");
+                return;
+            }
+
+            // Iterate over each camera and update the image
+            Object.entries(cameras).forEach(([cameraKey, base64Image]) => {
+                const imgElement = document.getElementById(cameraKey); // Get the image element
+                if (imgElement) {
+                    console.log(`Updating image for ${cameraKey}`);
+                    // Directly update image source without any caching mechanism
+                    imgElement.src = `data:image/jpeg;base64,${base64Image}`;
                 } else {
-                    console.error(`Invalid data format in ${filePath}`);
+                    console.error(`Image element for ${cameraKey} not found.`);
                 }
-            })
-            .catch(error => console.error(`Error fetching ${cameraKey} from ${filePath}:`, error));
-    });
+            });
+        })
+        .catch(error => console.error("Error fetching camera.json:", error));
 }
 
 
+// Start updating the cameras every 100ms (10fps)
+function startCameraUpdates() {
+    updateCameras(); // Initial update
+    cameraInterval = setInterval(updateCameras, 100); // Update every 100ms (10fps)
+}
+
+// Stop the camera updates if needed (for cleanup)
+function stopCameraUpdates() {
+    if (cameraInterval) {
+        clearInterval(cameraInterval);
+        cameraInterval = null;
+    }
+}
+
 
 async function openComfortPage() {
+    const skuList = await window.electron.getSkuButtons();
     const mainContent = document.getElementById('mainContent');
+
     mainContent.innerHTML = `
         <div id="comfort-section" class="content-section active">
             <div class="comfort-header">
                 <h1>Defect Detection Bleach Bottles</h1>
             </div>
-            
             <div class="sku-buttons-grid">
-                ${[
-                    "Comfort Blue Morning Fresh 860ml",
-                    "Comfort Pink Lily Fresh",
-                    "Comfort Green Garden Fresh",
-                    "Comfort Black Royale",
-                    "Comfort Black Desire",
-                    "Surf Excel Matic Top Load 1ltr",
-                    "Surf Excel Matic Front Load 1ltr",
-                    "Surf Excel Matic Top Load 500ml",
-                    "Surf Excel Matic Front Load 500ml",
-                    "Surf Excel Easy Wash 1ltr",
-                    "Surf Excel Easy Wash 500ml",
-                    "Surf Excel Quick Wash 1ltr",
-                    "Surf Excel Quick Wash 500ml",
-                    "Rin Matic Front Load 1ltr",
-                    "Rin Matic Top Load 1ltr",
-                    "STOP CODE"
-                ].map((label, index) => `
-                    <button class="sku-button ${index === 15 ? 'stop-code-button' : ''}" onclick="runPythonScript(${index + 1})">
+                ${skuList.map((label, index) => `
+                    <button class="sku-button ${label === "STOP CODE" ? 'stop-code-button' : ''}" onclick="runPythonScript(${index + 1})">
                         ${label}
                     </button>
                 `).join('')}
@@ -384,36 +368,67 @@ async function openComfortPage() {
 }
 
 
+function openDashboard() {
+    window.open("https://hul.indusvision.ai", "_blank"); // Opens in a new tab
+}
+
+let currentRunningScript = null; // Store the currently running script
+
+
 async function runPythonScript(scriptNumber) {
     try {
         const script = machineScripts[scriptNumber];
-        if (!script) {
-            console.error(`Script configuration not found for script number ${scriptNumber}`);
-            return;
+        if (!script) return console.error("Script not found");
+
+        const skuList = await window.electron.getSkuButtons();
+        const message = `START: ${skuList[scriptNumber - 1]}`;
+
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            ws.send(message);
+            console.log(" Sent over WebSocket:", message);
+        } else {
+            console.warn(" WebSocket not connected. Retrying...");
         }
 
-        console.log(`Updating config for SKU ${scriptNumber}...`);
-
-        // Step 1: Update Config File before running the script
         const configUpdated = await window.electron.runSkuPythonConfig(scriptNumber);
-        if (!configUpdated) {
-            console.error("Config update failed! Aborting script execution.");
-            return;
-        }
+        if (!configUpdated) return console.error("Config update failed");
 
-        console.log(`Config updated successfully for SKU ${scriptNumber}. Running Python script...`);
-
-        // Step 2: Run Python script after config is updated
         await window.electron.runPythonScript(script.pythonPath, script.scriptPath);
-        
-        console.log("Python script executed.");
     } catch (error) {
-        console.error("Error running script:", error);
+        console.error("Error:", error);
     }
 }
 
+let ws = null;
+
+function initWebSocket() {
+    ws = new WebSocket("ws://localhost:5005");
+
+    ws.onopen = () => {
+        console.log(" WebSocket connected");
+    };
+
+    ws.onmessage = (event) => {
+        console.log(" Message from WebSocket Server:", event.data);
+    };
+
+    ws.onerror = (err) => {
+        console.error(" WebSocket error:", err);
+    };
+
+    ws.onclose = () => {
+        console.warn(" WebSocket disconnected, retrying in 3s...");
+        setTimeout(initWebSocket, 3000);
+    };
+}
+
+
+
+
 
 // Cleanup intervals when changing sections
+
+
 function cleanupIntervals() {
     if (cameraInterval) {
         clearInterval(cameraInterval);
@@ -438,6 +453,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Load default content
     loadContent('code');
+    loadContent('defect_toggle');
+    initWebSocket();
 });
 
 function logout() {

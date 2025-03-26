@@ -345,7 +345,7 @@ body {
     filter: brightness(0) invert(1);
 }
 
-/* New styles for image gallery */
+/* New styles for image gallery
 .image-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -394,7 +394,7 @@ body {
 .image-date {
     font-size: 0.9rem;
     color: #666;
-}
+} */
 
 .refresh-button {
     position: fixed;
@@ -418,7 +418,7 @@ body {
 .refresh-button:hover {
     transform: rotate(180deg);
     background: #2980b9;
-}
+} 
 
 @media (max-width: 1200px) {
     .camera-grid {
@@ -470,7 +470,7 @@ body {
     .image-grid {
         grid-template-columns: 1fr;
     }
-}
+} */
 /* Ensure that the page ends right after pagination */
 .main-content {
     display: flex;
@@ -580,7 +580,7 @@ body {
 }
 
 
-.refresh-button {
+/* .refresh-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -597,24 +597,24 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
+} */
+/* 
 .refresh-button:hover {
     background: #2980b9;
 }
 
 .refresh-button.rotating {
     animation: rotate 1s linear infinite;
-}
+} */
 
-@keyframes rotate {
+/* @keyframes rotate {
     from {
         transform: rotate(0deg);
     }
     to {
         transform: rotate(360deg);
     }
-}
+} */
 
 .error-message {
     text-align: center;
@@ -825,7 +825,7 @@ body {
 }
 
 /* Refresh button */
-.refresh-button {
+ .refresh-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -846,7 +846,7 @@ body {
 
 .refresh-button:hover {
     background: #2980b9;
-}
+} 
 
 /* SKU Section Styling */
 .sku-buttons-grid {
@@ -923,5 +923,156 @@ body {
 @media (max-width: 480px) {
     .sku-buttons-grid {
         grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Toggle Container */
+.toggle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centering items */
+    gap: 20px; /* Adds spacing between toggles */
+    padding: 20px;
+}
+/* Toggle Wrapper - Space between Label and Switch */
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 350px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    gap: 15px; /* Space between elements */
+}
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e74c3c; /* Red when off */
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2ecc71; /* Green when on */
+}
+
+input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+/* Active Status Next to Toggle */
+.toggle-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 350px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.toggle-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Active Label */
+.active-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2ecc71;
+    margin-left: 10px;
+    visibility: hidden; /* Hidden by default */
+}
+
+input:checked ~ .active-label {
+    visibility: visible; /* Show when toggle is active */
+}
+
+/* Submit Button Styling */
+.submit-button {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: block;
+    margin: 20px auto;
+}
+
+.submit-button:hover {
+    background: linear-gradient(135deg, #2980b9, #1f6692);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
+    transform: scale(1.05);
+}
+
+/* Custom Alert Box */
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(52, 152, 219, 0.9);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    font-weight: bold;
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Alert Box Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
     }
 }

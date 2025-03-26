@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>GUI</title>
+    <title>INDUS VISION</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles.css">
@@ -30,9 +30,15 @@
                 Machine Status
             </button>
             <button class="nav-button" onclick="loadContent('images')">
-                <i class="fas fa-images"></i>
-                Images
+                <i class="fa fa-toggle-on" aria-hidden="true"></i>
+                Defect Toggle
             </button>
+            <button class="nav-button" onclick="openDashboard()">
+                <i class="fas fa-cube"></i>
+                Dashboard
+            </button>
+
+
             <!-- Add this button in your sidebar navigation section -->
             <!-- <button class="nav-button" data-section="sku">
                 <i class="fas fa-box-open"></i> SKU Config

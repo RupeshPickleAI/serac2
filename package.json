@@ -14,18 +14,15 @@
     "@babel/core": "^7.26.7",
     "@babel/preset-env": "^7.26.7",
     "@babel/preset-react": "^7.26.3",
-    "electron": "^33.4.4",
+    "electron": "^33.4.5",
     "electron-builder": "^25.1.8"
   },
   "build": {
     "appId": "com.vin.electronproject",
     "productName": "Electron Project",
     "win": {
-      "target": [
-        "nsis"
-      ],
-      "icon": "./assets/indus_logo_dev.ico",
-      "sign": false
+      "target": "portable",
+      "icon": "./assets/indus_logo_dev.ico"
     },
     "mac": {
       "icon": "./assets/indus_logo_dev.icns"
@@ -37,6 +34,7 @@
   "keywords": [],
   "description": "A sample Electron project",
   "dependencies": {
-    "electron-packager": "^17.1.2"
+    "electron-packager": "^17.1.2",
+    "ws": "^8.18.1"
   }
 }

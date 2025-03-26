@@ -203,25 +203,25 @@ body {
 
 
 /* OCR Section styling */
-.ocr-section {
+/* .ocr-section {
     margin-bottom: 2rem;
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+} */
 
 /* Slider container */
-.slider-container {
+/* .slider-container {
     padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-}
+} */
 
 /* Slider styling */
-.ocr-slider {
+/* .ocr-slider {
     width: 100%;
     max-width: 500px;
     height: 8px;
@@ -229,9 +229,9 @@ body {
     background: #e9ecef;
     border-radius: 4px;
     outline: none;
-}
+} */
 
-.ocr-slider::-webkit-slider-thumb {
+/* .ocr-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 20px;
@@ -240,14 +240,14 @@ body {
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+} */
 
-.ocr-slider::-webkit-slider-thumb:hover {
+/* .ocr-slider::-webkit-slider-thumb:hover {
     background: #218838;
     transform: scale(1.1);
-}
+} */
 
-.ocr-slider::-moz-range-thumb {
+/* .ocr-slider::-moz-range-thumb {
     width: 20px;
     height: 20px;
     background: #28a745;
@@ -255,33 +255,33 @@ body {
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+} */
 
-.ocr-slider::-moz-range-thumb:hover {
+/* .ocr-slider::-moz-range-thumb:hover {
     background: #218838;
     transform: scale(1.1);
-}
+} */
 
 /* Slider value display */
-.slider-value {
+/* .slider-value {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
     font-size: 1.1rem;
     color: #2c3e50;
-}
+} */
 
-#ocrValue {
+/* #ocrValue {
     font-weight: 600;
-}
+} */
 
-#ocrNumber {
+/* #ocrNumber {
     color: #6c757d;
-}
+} */
 
 /* Responsive adjustments */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .slider-container {
         padding: 0.5rem;
     }
@@ -293,10 +293,10 @@ body {
     .slider-value {
         font-size: 1rem;
     }
-}
+} */
 
 /* Add these styles to your existing CSS */
-.slider-container {
+/* .slider-container {
     position: relative;
     padding: 30px 0;
     margin: 20px 0;
@@ -359,4 +359,4 @@ body {
 .slider-mark.active .mark-number {
     color: #2ecc71;
     font-weight: bold;
-}
+} */

@@ -3,7 +3,11 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
+let toggleJsonPath = "C:/Users/Rupesh/Projects/serac1/Electron_Project/toggle.json";
+
+
 let mainWindow;
+
 const usersFilePath = path.join(__dirname, 'users.json');
 
 function createWindow() {
@@ -108,24 +112,60 @@ ipcMain.handle('write-config-file', async (event, filePath, content) => {
     }
 });
 
-ipcMain.handle('get-random-images', async (event, folderPath) => {
-    if (!folderPath) {
-        console.error("Error: folderPath is undefined");
-        return [];
-    }
+// IPC handler to update toggle.json
+ipcMain.on('update-toggle-json', (event, updatedData) => {
     try {
-        console.log("Reading images from:", folderPath);
-        const files = fs.readdirSync(folderPath);
-        const imageFiles = files
-            .filter(file => ['.jpg', '.jpeg', '.png', '.gif'].includes(path.extname(file).toLowerCase()))
-            .map(file => path.join(folderPath, file));
-
-        return imageFiles;
+        fs.writeFileSync(toggleJsonPath, JSON.stringify(updatedData, null, 4), 'utf-8');
+        event.reply('toggle-json-updated', { success: true });
     } catch (error) {
-        console.error('Error reading images:', error);
+        console.error("Error writing to toggle.json:", error);
+        event.reply('toggle-json-updated', { success: false, error: error.message });
+    }
+});
+
+//this is the skubuttons config file 
+const skuButtonsPath = path.join(__dirname, 'sku_buttons.json');
+
+ipcMain.handle('get-sku-buttons', async () => {
+    try {
+        const rawData = fs.readFileSync(skuButtonsPath);
+        const parsed = JSON.parse(rawData);
+        return parsed.serac2;
+    } catch (err) {
+        console.error("Error loading sku_buttons.json:", err);
         return [];
     }
 });
+
+//communication through port 
+const net = require('net');
+
+ipcMain.handle('send-socket-message', async (event, message, host, port) => {
+    return new Promise((resolve, reject) => {
+        const client = new net.Socket();
+        client.connect(port, host, () => {
+            console.log(`Connected to ${host}:${port}`);
+            client.write(message);
+        });
+
+        client.on('data', (data) => {
+            console.log(`Received: ${data}`);
+            client.destroy(); // kill client after server's response
+            resolve(data.toString());
+        });
+
+        client.on('error', (err) => {
+            console.error(`Socket error: ${err.message}`);
+            reject(err.message);
+        });
+
+        client.on('close', () => {
+            console.log('Connection closed');
+        });
+    });
+});
+
+
 
 ipcMain.on('login-success', () => {
     mainWindow.loadFile('index.html');
